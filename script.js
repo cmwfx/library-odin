@@ -8,6 +8,7 @@ let NewBookBtn = document.querySelector(".add-book-btn");
 let bookTitle1 = document.querySelector("#book-title");
 let container = document.querySelector(".container");
 let bookCardContainer = document.querySelector(".book");
+let readBtn = document.querySelector(".read-btn");
 // let theHobbit = new Books("The Hobbit", "J.R.R. Tolkien", 295, false);
 // let harryPotter = new Books("Harry Potter", "J.K. Rowling", 411, true);
 // console.log(harryPotter.info());
@@ -114,6 +115,7 @@ function createBookCard() {
 		bookAuthorValue,
 		bookPagesValue,
 		bookReadValue,
+		bookDeleteValue,
 	};
 }
 function loopMyLibrary() {
@@ -126,17 +128,48 @@ function loopMyLibrary() {
 				element.remove();
 			});
 		}
-		const { bookTitleValue, bookAuthorValue, bookPagesValue, bookReadValue } =
-			createBookCard();
+		const {
+			bookTitleValue,
+			bookAuthorValue,
+			bookPagesValue,
+			bookReadValue,
+			bookDeleteValue,
+		} = createBookCard();
 		bookTitleValue.textContent = myLibrary[i].title;
 		bookAuthorValue.textContent = myLibrary[i].author;
 		bookPagesValue.textContent = `${myLibrary[i].pages} pages`;
+
+		bookDeleteValue.addEventListener("click", function () {
+			myLibrary.splice(i, 1);
+			let DeleteBook = document.querySelectorAll(".book")[i];
+			DeleteBook.parentNode.removeChild(DeleteBook);
+		});
+
 		if (myLibrary[i].read) {
 			bookReadValue.textContent = "Read";
+			bookReadValue.addEventListener("click", function () {
+				if (bookReadValue.textContent == "Read") {
+					bookReadValue.textContent = "Not Read";
+					bookReadValue.style.backgroundColor = "#ff9c9c";
+				} else {
+					bookReadValue.textContent = "Read";
+					bookReadValue.style.backgroundColor = "#9cff9c";
+				}
+			});
 		} else {
 			bookReadValue.textContent = "Not Read";
 			bookReadValue.style.backgroundColor = "#ff9c9c";
+			bookReadValue.addEventListener("click", function () {
+				if (bookReadValue.textContent == "Read") {
+					bookReadValue.textContent = "Not Read";
+					bookReadValue.style.backgroundColor = "#ff9c9c";
+				} else {
+					bookReadValue.textContent = "Read";
+					bookReadValue.style.backgroundColor = "#9cff9c";
+				}
+			});
 		}
+
 		bookTitle.value = "";
 		bookAuthor.value = "";
 		bookPages.value = "";
@@ -144,3 +177,7 @@ function loopMyLibrary() {
 		addBookContainer.style.display = "none";
 	}
 }
+
+// function removeBookCard() {
+// 	loopMyLibrary();
+// }
