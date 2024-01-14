@@ -9,9 +9,6 @@ let bookTitle1 = document.querySelector("#book-title");
 let container = document.querySelector(".container");
 let bookCardContainer = document.querySelector(".book");
 let readBtn = document.querySelector(".read-btn");
-// let theHobbit = new Books("The Hobbit", "J.R.R. Tolkien", 295, false);
-// let harryPotter = new Books("Harry Potter", "J.K. Rowling", 411, true);
-// console.log(harryPotter.info());
 addBookBtn.addEventListener("click", addBookToLibrary);
 let title = "";
 let author = "";
@@ -25,7 +22,6 @@ NewBookBtn.addEventListener("click", function (event) {
 	read = bookRead.checked;
 	bookTitle1.innerHTML = title;
 	newBookObject();
-	// createBookCard();
 	loopMyLibrary();
 	console.log(myLibrary);
 	bookTitle.value = "";
@@ -43,9 +39,6 @@ function Book(title, author, pages, read) {
 	this.author = author;
 	this.pages = pages;
 	this.read = read;
-	this.info = function () {
-		// do stuff here
-	};
 }
 function newBookObject() {
 	let newBook = new Book(title, author, pages, read);
@@ -53,7 +46,6 @@ function newBookObject() {
 }
 
 function addBookToLibrary() {
-	// do stuff here
 	addBookContainer.style.display = "flex";
 }
 function createBookCard() {
@@ -86,28 +78,6 @@ function createBookCard() {
 	bookCard.appendChild(bookReadValue);
 	bookCard.appendChild(bookDeleteValue);
 
-	// let libraryValue = myLibrary.length - 1;
-	// for (let i = libraryValue; i >= 0; i--) {
-	// 	bookTitleValue.textContent = myLibrary[i].title;
-	// 	bookAuthorValue.textContent = myLibrary[i].author;
-	// 	bookPagesValue.textContent = `${myLibrary[i].pages} pages`;
-	// 	if (myLibrary[i].read) {
-	// 		bookReadValue.textContent = "Read";
-	// 	} else {
-	// 		bookReadValue.textContent = "Not Read";
-	// 		bookReadValue.style.backgroundColor = "#ff9c9c";
-	// 	}
-	// }
-
-	// bookTitleValue.textContent = title;
-	// bookAuthorValue.textContent = author;
-	// bookPagesValue.textContent = `${pages} pages`;
-	// if (read) {
-	// 	bookReadValue.textContent = "Read";
-	// } else {
-	// 	bookReadValue.textContent = "Not Read";
-	// 	bookReadValue.style.backgroundColor = "#ff9c9c";
-	// }
 	bookDeleteValue.textContent = "Remove";
 	container.appendChild(bookCard);
 	return {
@@ -119,15 +89,11 @@ function createBookCard() {
 	};
 }
 function loopMyLibrary() {
+	document.querySelectorAll(".book").forEach(function (bookElement) {
+		bookElement.remove();
+	});
 	let libraryValue = myLibrary.length - 1;
 	for (let i = libraryValue; i >= 0; i--) {
-		//bookCardContainer.innerHTML = "";
-		if (myLibrary.length - 2 == i) {
-			let bookCardContainerArray = Array.from(bookCardContainer);
-			bookCardContainerArray.forEach(function (element) {
-				element.remove();
-			});
-		}
 		const {
 			bookTitleValue,
 			bookAuthorValue,
@@ -141,8 +107,7 @@ function loopMyLibrary() {
 
 		bookDeleteValue.addEventListener("click", function () {
 			myLibrary.splice(i, 1);
-			let DeleteBook = document.querySelectorAll(".book")[i];
-			DeleteBook.parentNode.removeChild(DeleteBook);
+			loopMyLibrary();
 		});
 
 		if (myLibrary[i].read) {
@@ -177,7 +142,3 @@ function loopMyLibrary() {
 		addBookContainer.style.display = "none";
 	}
 }
-
-// function removeBookCard() {
-// 	loopMyLibrary();
-// }
