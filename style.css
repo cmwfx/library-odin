@@ -180,6 +180,7 @@ h1 {
 	gap: 1rem;
 	padding-left: 1rem;
 	padding-right: 1rem;
+	position: relative;
 }
 .book {
 	background-color: white;
@@ -193,6 +194,8 @@ h1 {
 	align-items: center;
 	font-size: 1.5rem;
 	font-weight: medium;
+	/* position: relative;
+	z-index: 1; */
 }
 .book-item {
 	margin-bottom: 1rem;
@@ -221,5 +224,75 @@ h1 {
 }
 .remove-btn:hover {
 	background-color: #bdbdbd;
+	cursor: pointer;
+}
+.add-book-container {
+	width: 100vw;
+	height: 100vh;
+	background-color: rgba(0, 0, 0, 0.501);
+	position: fixed;
+	top: 0;
+	left: 0;
+	/* transform: translate(-50%, -50%); */
+	z-index: 2;
+	display: flex;
+	justify-content: center;
+	align-items: center;
+}
+.add-book-items {
+	min-width: 300px;
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+	background-color: #f0eef1;
+	padding: 1.5rem;
+	border-radius: 10px;
+}
+input {
+	display: block;
+	margin-bottom: 1.5rem;
+	border-radius: 10px;
+	border: none;
+	height: 2.5rem;
+	padding-left: 0.75rem;
+	font-size: 1.5rem;
+}
+.add-book-items p {
+	font-size: 1.5rem;
+	font-weight: bold;
+	margin-bottom: 1.5rem;
+}
+form {
+	display: flex;
+	flex-direction: column;
+	align-items: center;
+}
+.checkbox {
+	display: inline-block;
+	vertical-align: middle;
+	margin-bottom: 0.3rem;
+	font-size: 1.5rem;
+}
+.checkbox:hover {
+	cursor: pointer;
+}
+#checkbox {
+	height: 1.5rem;
+	width: 1.5rem;
+}
+.add-book-btn {
+	margin-top: 0.5rem;
+	display: block;
+
+	background-color: #9fff9c;
+	border: none;
+	font-size: 1.5rem;
+	font-weight: medium;
+	padding: 0.5rem 1rem;
+	border-radius: 10px;
+	width: 100%;
+}
+.add-book-btn:hover {
+	background-color: #71ef6d;
 	cursor: pointer;
 }
